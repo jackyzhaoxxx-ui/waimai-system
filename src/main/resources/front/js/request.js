@@ -69,4 +69,5 @@
         }
     )
     win.$axios = service
+    win.request = service
 })(window);

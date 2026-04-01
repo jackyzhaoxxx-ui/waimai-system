@@ -4,7 +4,10 @@
         recalc = function () {
             var clientWidth = docEl.clientWidth;
             if (!clientWidth) return;
-            if (clientWidth > 750) {
+            // 桌面浏览器适配
+            if (clientWidth > 1200) {
+                docEl.style.fontSize = '16px';
+            } else if (clientWidth > 750) {
                 docEl.style.fontSize = '28px';
             } else {
                 docEl.style.fontSize = (clientWidth / 375) + 'px';

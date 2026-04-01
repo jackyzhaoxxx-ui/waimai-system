@@ -43,6 +43,12 @@
                 <span class="cc">历史订单</span>
                 <i class="el-icon-arrow-right"></i>
             </div>
+            <div class="divSplit"></div>
+            <div class="item" @click="toChatPage">
+                <img src="./../images/time.png"/>
+                <span class="cc">联系客服</span>
+                <i class="el-icon-arrow-right"></i>
+            </div>
         </div>
         <div class="divOrders" v-if="order[0]">
             <div class="title">最新订单</div>
@@ -124,6 +130,11 @@
             toOrderPage() {
                 window.requestAnimationFrame(() => {
                     window.location.href = '/front/page/order.html'
+                })
+            },
+            toChatPage() {
+                window.requestAnimationFrame(() => {
+                    window.location.href = '/front/page/chat.html'
                 })
             },
             initData() {

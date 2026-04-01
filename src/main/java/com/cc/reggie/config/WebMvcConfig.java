@@ -23,6 +23,15 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         log.info("开始进行静态资源映射...");
         registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
         registry.addResourceHandler("/front/**").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/img/**").addResourceLocations("classpath:/img/");
+        registry.addResourceHandler("/*.html").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.html").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.css").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.js").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.png").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.jpg").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.gif").addResourceLocations("classpath:/front/");
+        registry.addResourceHandler("/**/*.ico").addResourceLocations("classpath:/front/");
     }
 
     /**

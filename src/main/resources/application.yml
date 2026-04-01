@@ -14,7 +14,7 @@ spring:
   redis:
 #    host: 172.24.151.51
     host: 127.0.0.1
-    port: 6379
+    port: 6380
     #    password: 123456
     database: 0
     cache:
@@ -31,4 +31,13 @@ mybatis-plus:
       id-type: ASSIGN_ID
 reggie:
   path: D:\\desktop\\img\\
-
+  ai:
+    # 是否启用 AI 大模型（true: 启用，false: 使用本地关键词匹配）
+    enabled: true
+    # AI 系统提示词
+    system-prompt: 你是一个外卖系统的智能客服助手，负责解答用户关于点餐、订单、配送、菜品、优惠活动等问题。请用友好、简洁、专业的语言回答用户问题。如果用户询问菜单推荐，可以推荐热销菜品；如果询问配送时间，告知一般 30-45 分钟；如果询问优惠活动，介绍当前活动。
+    # DeepSeek API 配置
+    api-key: sk-e40988c271424dd0af781a40a59fffea
+    api-url: https://api.deepseek.com/v1/chat/completions
+    # 模型名称
+    model: deepseek-chat

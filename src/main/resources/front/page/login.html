@@ -70,9 +70,19 @@
                 const regex = /^(13[0-9]{9})|(15[0-9]{9})|(17[0-9]{9})|(18[0-9]{9})|(19[0-9]{9})$/;
                 if (regex.test(this.form.phone)) {
                     this.msgFlag = false
-                    // this.form.code = (Math.random() * 1000000).toFixed(0)
-                    const res = sendMsgApi({phone: this.form.phone, code: this.form.code})
-                    sessionStorage.setItem('code', res)
+                    // 调用后端 API 发送验证码
+                    sendMsgApi({phone: this.form.phone, code: this.form.code})
+                        .then(res => {
+                            if (res.code === 1) {
+                                this.$notify({type: 'success', message: '验证码已发送，请查收短信'});
+                            } else {
+                                this.$notify({type: 'warning', message: res.msg || '发送失败'});
+                            }
+                        })
+                        .catch(error => {
+                            console.error('发送验证码失败:', error);
+                            this.$notify({type: 'warning', message: '发送失败，请重试'});
+                        });
                 } else {
                     this.msgFlag = true
                 }
@@ -84,6 +94,8 @@
                     this.loading = false
                     if (res.code === 1) {
                         sessionStorage.setItem("userPhone", this.form.phone)
+                        // 保存用户信息到 sessionStorage
+                        sessionStorage.setItem("user", JSON.stringify(res.data))
                         window.requestAnimationFrame(() => {
                             window.location.href = '/front/index.html'
                         })
