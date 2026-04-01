@@ -4,7 +4,7 @@ s# 🚀 DeepSeek AI 智能客服 - 快速启动指南
 
 | 项目 | 状态 | 值 |
 |------|------|-----|
-| API Key | ✅ 已配置 | `sk-e40988c271424dd0af781a40a59fffea` |
+| API Key | ✅ 已配置 | `sk-***************` (已隐藏) |
 | API URL | ✅ 已配置 | `https://api.deepseek.com/v1/chat/completions` |
 | 模型 | ✅ 已配置 | `deepseek-chat` |
 | AI 功能 | ✅ 已启用 | `enabled: true` |

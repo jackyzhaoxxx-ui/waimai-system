@@ -5001,6 +5001,216 @@ cache:
 
 > #### 🍻 感谢您能看到这里，如果您有什么想法或建议，请随时反馈给我。
 > #### 🚿 本次有幸通过传智播客黑马的与学校合作的实训接触这个项目，通过自己的学习和学习、网络资源完成此项目。
-> #### 🛏️ 通过此次实训，掌握了SpringBoot框架的各种知识，且能够在实训中独立自己完成一个项目。
-> #### 🛋️ 本次项目使我加深了debug的经验，能通过调试去发现bug从而进行解决。
-> #### 🕹️ 最大的收获还是独立开发一个完整项目的经验与乐趣，以后可以更加深入了解SpringBoot框架。
+> #### 🛏️ 通过此次实训，掌握了 SpringBoot 框架的各种知识，且能够在实训中独立自己完成一个项目。
+> #### 🛋️ 本次项目使我加深了 debug 的经验，能通过调试去发现 bug 从而进行解决。
+> #### 🕹️ 最大的收获还是独立开发一个完整项目的经验与乐趣，以后可以更加深入了解 SpringBoot 框架。
+
+## 🤖 智能客服模块
+
+---
+
+### 📖 模块简介
+
+这是一个为外卖系统添加的智能客服模块，可以作为 Spring AI 应用示范项目，非常适合用于后端岗位面试。
+
+#### 核心功能
+
+✅ **智能问答** - 基于 DeepSeek 大模型的 AI 智能回复  
+✅ **聊天历史** - 自动保存聊天记录，支持查看历史对话  
+✅ **快捷问题** - 预设常见问题，一键快速提问  
+✅ **友好界面** - 现代化的聊天界面，实时消息展示  
+
+### 🏗️ 技术架构
+
+#### 后端技术栈
+
+- **Spring Boot 2.4.5** - 核心框架
+- **MyBatis-Plus 3.4.2** - ORM 框架
+- **MySQL** - 数据库
+- **DeepSeek AI** - 大模型集成
+
+#### 前端技术栈
+
+- **Vue.js 2.x** - 渐进式 JavaScript 框架
+- **Vant UI** - 移动端组件库
+- **Axios** - HTTP 客户端
+
+### 🚀 快速开始
+
+#### 方式一：使用 IDE（推荐）
+
+1. **打开 IDE** → IntelliJ IDEA 或 Eclipse
+2. **导入项目** → File → Open → 选择项目根目录
+3. **运行应用** → 找到 `ReggieApplication.java` → 右键 Run
+4. **访问系统** → http://localhost:8080/front/index.html
+
+#### 方式二：使用启动脚本
+
+```powershell
+# 在 PowerShell 中执行
+$env:JAVA_HOME = "C:\Program Files\Java\jdk1.8.0_202"
+$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+mvn spring-boot:run
+```
+
+### 📱 使用流程
+
+1. **登录系统** → 使用已有账号或注册新账号
+2. **进入个人中心** → 点击右上角用户头像
+3. **点击"联系客服"** → 进入聊天界面
+4. **开始对话** → 输入问题或点击快捷问题
+
+#### 测试示例
+
+| 提问 | 预期回复 |
+|------|----------|
+| 配送费多少钱？ | 配送费为 6 元，满 50 元免配送费哦！ |
+| 有什么优惠活动？ | 新用户注册即送 18 元红包！每日签到也可领取优惠券... |
+| 推荐几个招牌菜 | 我们的招牌菜有：宫保鸡丁、鱼香肉丝、麻婆豆腐... |
+| 如何申请退款？ | 如需退款，请在订单页面申请退款，我们会在 1-3 个工作日内处理。 |
+
+### 💡 面试加分点
+
+#### 技术能力展示
+
+- ✅ Spring Boot 整合能力
+- ✅ MyBatis-Plus 使用
+- ✅ MySQL 数据库设计
+- ✅ Vue.js 前端开发
+- ✅ RESTful API 设计
+- ✅ AI 应用集成概念
+
+#### 工程化思维
+
+- ✅ 代码分层清晰
+- ✅ 注释规范详细
+- ✅ 异常处理完善
+- ✅ 日志记录合理
+- ✅ 文档齐全
+
+#### 产品思维
+
+- ✅ 用户体验优先
+- ✅ 快捷问题设计
+- ✅ 降级方案完备
+- ✅ 可扩展性强
+
+### 🔧 技术实现
+
+#### 项目结构
+
+```
+waimai program/
+├── src/main/java/com/cc/reggie/
+│   ├── entity/              # 实体类
+│   │   └── ChatRecord.java
+│   ├── mapper/              # 数据访问层
+│   │   └── ChatRecordMapper.java
+│   ├── dto/                 # 数据传输对象
+│   │   ├── ChatRequest.java
+│   │   └── ChatResponse.java
+│   ├── service/             # 业务逻辑层
+│   │   ├── ChatService.java
+│   │   └── impl/ChatServiceImpl.java
+│   └── controller/          # 控制器
+│       └── ChatController.java
+├── src/main/resources/
+│   ├── front/
+│   │   ├── page/chat.html   # 聊天页面
+│   │   └── api/chat.js      # 聊天 API
+│   └── chat_record.sql      # 建表脚本
+└── pom.xml                  # Maven 配置
+```
+
+#### 数据库表结构
+
+```sql
+CREATE TABLE IF NOT EXISTS `chat_record` (
+    `id` bigint(20) NOT NULL COMMENT '主键 ID',
+    `user_id` bigint(20) DEFAULT NULL COMMENT '用户 ID',
+    `question` text COMMENT '用户问题',
+    `answer` text COMMENT 'AI 回答',
+    `session_id` varchar(100) DEFAULT NULL COMMENT '会话 ID',
+    `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+    `deleted` int(11) DEFAULT '0' COMMENT '逻辑删除 0-未删除 1-已删除',
+    PRIMARY KEY (`id`),
+    KEY `idx_session_id` (`session_id`),
+    KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='智能客服聊天记录';
+```
+
+### ❓ 常见问题
+
+#### Q1: 编译失败 "No compiler is provided"
+
+**原因**: Maven 使用的是 JRE 而不是 JDK
+
+**解决方案**:
+- 方案 A: 使用 IDE（最简单）直接在 IntelliJ IDEA 或 Eclipse 中运行
+- 方案 B: 配置环境变量（永久解决）
+
+以管理员身份运行 PowerShell：
+```powershell
+[System.Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Java\jdk1.8.0_202", "Machine")
+$currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
+[System.Environment]::SetEnvironmentVariable("PATH", "$currentPath;%JAVA_HOME%\bin", "Machine")
+```
+
+重启终端后再次运行启动脚本
+
+#### Q2: 端口被占用怎么办？
+
+**解决方案**: 在 `application.yml` 中修改端口号：
+```yaml
+server:
+  port: 8081  # 改为其他端口
+```
+
+#### Q3: 如何清除聊天记录？
+
+**解决方案**: 执行 SQL 清空表：
+```sql
+TRUNCATE TABLE chat_record;
+```
+
+### 🎯 扩展升级
+
+#### 集成真实 AI 服务
+
+当前已集成 DeepSeek 大模型，可以轻松替换为其他 AI 服务：
+
+```java
+// 在 ChatServiceImpl.java 中
+public ChatResponse chat(Long userId, String sessionId, String question) {
+    // 调用 DeepSeek API
+    String answer = callAiApi(question);
+    return new ChatResponse(answer, sessionId);
+}
+```
+
+#### 可配置 API Key
+
+在 `application.yml` 中配置：
+```yaml
+reggie:
+  ai:
+    enabled: true  # 是否启用 AI
+    api-key: your-api-key-here  # API Key
+    api-url: https://api.example.com/v1/chat/completions  # API 地址
+    model: model-name  # 模型名称
+    system-prompt: 你是一个外卖系统的智能客服助手...  # 系统提示词
+```
+
+### 📝 注意事项
+
+1. **API 余额**: 定期检查 DeepSeek 账户余额，避免欠费
+2. **错误处理**: 代码已实现降级方案，API 失败时自动切换到本地关键词匹配
+3. **日志记录**: 所有对话都会保存到数据库 chat_record 表
+4. **安全考虑**: API Key 保存在配置文件，不要提交到 Git
+
+### 🎉 总结
+
+智能客服模块展示了从需求分析、技术选型、系统设计到编码实现的完整过程。通过集成 DeepSeek 大模型，实现了专业的智能客服功能，适合作为面试项目展示技术实力。
+
+**祝你面试顺利，拿到理想的 Offer！🎉**
